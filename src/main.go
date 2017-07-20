@@ -22,7 +22,9 @@ func main() {
 		reportError(err)
 	}
 
-	_, err = http.Post(target, "application/json", resp.Body)
+	contentType := resp.Header["Content-Type"][0]
+
+	_, err = http.Post(target, contentType, resp.Body)
 
 	resp.Body.Close()
 
